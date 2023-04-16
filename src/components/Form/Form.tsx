@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validation } from '../../utils/vaildation';
+import { signup, signin, ErrorResponse } from '../../apis/auth';
+import { localStorageKey } from '../../constants';
 
-type formType = 'signup' | 'signin';
+type FormType = 'signup' | 'signin';
 
-export default function Form({ formType }: { formType: formType }) {
+export default function Form({ formType }: { formType: FormType }) {
   const [values, setValues] = useState({
     email: '',
     password: '',
   });
-  const signUpOrLogIn = formType === 'signup' ? '회원가입' : '로그인';
-  const nextPath = formType === 'signup' ? '/signin' : '/todo';
+
+  const isSignUp = formType === 'signup';
+  const signUpOrLogIn = isSignUp ? '회원가입' : '로그인';
+  const nextPath = isSignUp ? '/signin' : '/todo';
+
   const navigate = useNavigate();
 
   const disabled =
@@ -24,10 +29,36 @@ export default function Form({ formType }: { formType: formType }) {
     }));
   };
 
+  const handleSignUp = async () => {
+    try {
+      const { status } = await signup(values);
+      if (status === 201) {
+        alert(`${signUpOrLogIn}이 완료되었습니다.`);
+        navigate(nextPath);
+      }
+    } catch (error) {
+      const err = error as ErrorResponse;
+      alert(err?.response?.data.message);
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      const { status, data } = await signin(values);
+      if (status === 200) {
+        localStorage.setItem(localStorageKey.ACCESS_TOKEN, data.access_token); //로그인에 성공하면 로컬스토리지에 저장
+        alert(`${signUpOrLogIn}이 완료되었습니다.`);
+        navigate(nextPath);
+      }
+    } catch (error) {
+      const err = error as ErrorResponse;
+      alert(err?.response?.data.message);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`${signUpOrLogIn}이 완료되었습니다.`);
-    navigate(nextPath);
+    isSignUp ? handleSignUp() : handleSignIn();
   };
 
   return (
