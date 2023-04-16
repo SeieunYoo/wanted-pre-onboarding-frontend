@@ -1,7 +1,13 @@
 import React from 'react';
+import Form from '../components/Form';
 
 function SignInPage() {
-  return <div>로그인페이지</div>;
+  return (
+    <>
+      <h3 className="font-bold">로그인</h3>
+      <Form formType="signin" />
+    </>
+  );
 }
 
 export default SignInPage;
