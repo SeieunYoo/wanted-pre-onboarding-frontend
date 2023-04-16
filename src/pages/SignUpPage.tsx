@@ -1,3 +1,4 @@
+import { path } from '../constants';
 import Form from '../components/Form';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ function SignUpPage() {
     <>
       <h3 className="font-bold">회원가입</h3>
       <Form formType={'signup'} />
-      <Link to="/signin">
+      <Link to={path.SIGNIN}>
         <span>로그인 하러가기</span>
       </Link>
     </>
