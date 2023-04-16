@@ -1,5 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
 
 export default function App() {
-  return <div className="bg-red-500 font-bold text-3xl">App</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
