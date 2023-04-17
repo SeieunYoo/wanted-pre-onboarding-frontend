@@ -1,11 +1,12 @@
 import { localStorageKey, path } from '../constants';
 import Form from '../components/Form';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const accessToken = localStorage.getItem(localStorageKey.ACCESS_TOKEN);
     if (accessToken) {
