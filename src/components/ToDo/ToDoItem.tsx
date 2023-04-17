@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToDo } from '../../types';
 import useInput from '../../hooks/useInput';
-import { deleteToDo } from '../../apis/todos';
+import { deleteToDo, updateToDo } from '../../apis/todos';
 
 interface Props {
   todo: ToDo;
@@ -14,6 +14,19 @@ export function ToDoItem({ todo, setToDos }: Props) {
   const handleDeleteToDo = async (id: number) => {
     await deleteToDo(id);
     setToDos((todos) => todos.filter((todo) => todo.id !== id));
+  };
+
+  const handleUpdateToDo = async (todoItem: ToDo) => {
+    const newToDoItem = {
+      todo: text,
+      id: todoItem.id,
+      isCompleted: todoItem.isCompleted,
+    };
+    await updateToDo(newToDoItem);
+    setIsEdit(false);
+    setToDos((todos) =>
+      todos.map((todo) => (todo.id === todoItem.id ? newToDoItem : todo)),
+    );
   };
 
   useEffect(() => {
@@ -36,7 +49,13 @@ export function ToDoItem({ todo, setToDos }: Props) {
           )}
           {isEdit ? (
             <>
-              <button data-testid="submit-button" className="text-red-500">
+              <button
+                data-testid="submit-button"
+                className="text-red-500"
+                onClick={() => {
+                  handleUpdateToDo(todo);
+                }}
+              >
                 제출
               </button>
               <button
