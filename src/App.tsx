@@ -10,6 +10,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignUpPage />} />
+        <Route path="/*" element={<SignUpPage />} />
         <Route path={path.SIGNUP} element={<SignUpPage />} />
         <Route path={path.SIGNIN} element={<SignInPage />} />
         <Route path={path.TODO} element={<ToDosPage />} />
