@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "import"],
   "env": {
     "browser": true
   },
@@ -10,7 +10,21 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["off", { "endOfLine": "auto" }]
+    "prettier/prettier": ["off", { "endOfLine": "auto" }],
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "type"],
+        "pathGroups": [
+          {
+            "pattern": "@**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"]
+      }
+    ]
   },
   "settings": {
     "react": {

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Form from '../components/Form';
-import { Link } from 'react-router-dom';
 import { localStorageKey, path } from '../constants';
-import { useNavigate } from 'react-router-dom';
 
 function SignInPage() {
   const navigate = useNavigate();

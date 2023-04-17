@@ -1,8 +1,7 @@
-import { localStorageKey, path } from '../constants';
-import Form from '../components/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Form from '../components/Form';
+import { localStorageKey, path } from '../constants';
 
 function SignUpPage() {
   const navigate = useNavigate();
