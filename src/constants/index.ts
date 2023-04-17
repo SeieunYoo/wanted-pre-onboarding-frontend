@@ -1,2 +1,2 @@
-export * from "./localStorageKey";
-export * from "./path";
+export * from './path';
+export * from './localStorageKey';

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validation } from '../../utils/vaildation';
 import { signup, signin, ErrorResponse } from '../../apis/auth';
-import { localStorageKey, path } from '../../constants';
+import { path } from '../../constants';
+import { setAccessToken } from '../../utils';
 
 type FormType = 'signup' | 'signin';
 
@@ -46,7 +47,7 @@ export default function Form({ formType }: { formType: FormType }) {
     try {
       const { status, data } = await signin(values);
       if (status === 200) {
-        localStorage.setItem(localStorageKey.ACCESS_TOKEN, data.access_token); //로그인에 성공하면 로컬스토리지에 저장
+        setAccessToken(data.access_token); //로그인에 성공하면 로컬스토리지에 저장
         alert(`${signUpOrLogIn}이 완료되었습니다.`);
         navigate(nextPath);
       }

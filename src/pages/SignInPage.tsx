@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Form from '../components/Form';
-import { localStorageKey, path } from '../constants';
+import { path } from '../constants';
+import { getAccessToken } from '../utils';
 
 function SignInPage() {
   const navigate = useNavigate();
   useEffect(() => {
-    const accessToken = localStorage.getItem(localStorageKey.ACCESS_TOKEN);
+    const accessToken = getAccessToken();
     if (accessToken) {
       navigate(path.TODO);
     }
