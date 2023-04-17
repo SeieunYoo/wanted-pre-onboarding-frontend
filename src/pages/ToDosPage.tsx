@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getToDos, createToDo } from '../apis/todos';
+import { getToDos, createToDo, deleteToDo } from '../apis/todos';
 import { ToDo } from '../types';
 import useInput from '../hooks/useInput';
 
@@ -16,6 +16,11 @@ function ToDosPage() {
     const { data } = await createToDo({ todo: text });
     setToDos([...todos, data]);
     setText('');
+  };
+
+  const deleteToDos = async (id: number) => {
+    await deleteToDo(id);
+    setToDos((todos) => todos.filter((todo) => todo.id !== id));
   };
 
   useEffect(() => {
@@ -38,7 +43,13 @@ function ToDosPage() {
               <button data-testid="modify-button" className="text-red-500">
                 수정
               </button>
-              <button data-testid="delete-button" className="text-blue-500">
+              <button
+                data-testid="delete-button"
+                className="text-blue-500"
+                onClick={() => {
+                  deleteToDos(todo.id);
+                }}
+              >
                 삭제
               </button>
             </label>

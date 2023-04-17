@@ -8,3 +8,7 @@ export const getToDos = () => {
 export const createToDo = (todo: CreateToDoType) => {
   return axiosBasic.post('/todos', todo);
 };
+
+export const deleteToDo = (id: number) => {
+  return axiosBasic.delete(`/todos/${id}`);
+};

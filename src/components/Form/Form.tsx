@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validation } from '@/utils/vaildation';
-import { signup, signin, ErrorResponse } from '@/apis/auth';
-import { localStorageKey, path } from '@/constants';
+import { validation } from '../../utils/vaildation';
+import { signup, signin, ErrorResponse } from '../../apis/auth';
+import { localStorageKey, path } from '../../constants';
 
 type FormType = 'signup' | 'signin';
 
