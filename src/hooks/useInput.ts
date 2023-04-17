@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const useInput = () => {
   const [text, setText] = useState<string>('');
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
-  }
+  }, []);
 
   return { text, onChange, setText };
 };
