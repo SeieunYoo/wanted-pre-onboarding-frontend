@@ -7,3 +7,4 @@
 - 회원가입,로그인,로그아웃,투두 CRUD
 
 ### 배포
+https://wanted-pre-onboarding-frontend-git-main-seieunyoo.vercel.app/
