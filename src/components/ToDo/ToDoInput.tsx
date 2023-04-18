@@ -8,17 +8,17 @@ interface Props {
 }
 
 export function ToDoInput({ setToDos }: Props) {
-  const { text, setText, onChange } = useInput();
+  const { value, setValue, onChange } = useInput("");
 
   const handleCreateToDo = async () => {
-    const { data } = await createToDo({ todo: text });
+    const { data } = await createToDo({ todo: value });
     setToDos((todos) => [...todos, data]);
-    setText('');
+    setValue('');
   };
 
   return (
     <>
-      <input data-testid="new-todo-input" value={text} onChange={onChange} />
+      <input data-testid="new-todo-input" value={value} onChange={onChange} />
       <button
         data-testid="new-todo-add-button"
         onClick={() => handleCreateToDo()}

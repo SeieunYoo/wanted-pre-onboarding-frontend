@@ -1,13 +1,28 @@
 import React, { useState, useCallback } from 'react';
 
-const useInput = () => {
-  const [text, setText] = useState<string>('');
+type UseInputReturn<T> = {
+  value: T;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setValue: React.Dispatch<React.SetStateAction<T>>;
+};
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  }, []);
+const useInput = <T extends unknown>(initialValue: T): UseInputReturn<T> => {
+  const [value, setValue] = useState<T>(initialValue);
 
-  return { text, onChange, setText };
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (typeof initialValue === 'string') {
+        setValue(e.target.value as unknown as T);
+      } else {
+        const { name, value } = e.target;
+        setValue((prev) => ({ ...(prev as object), [name]: value } as T));
+      }
+    },
+    [initialValue],
+  );
+
+  return { value, onChange, setValue };
 };
 
 export default useInput;

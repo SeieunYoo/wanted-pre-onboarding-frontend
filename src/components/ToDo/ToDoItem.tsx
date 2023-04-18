@@ -10,7 +10,7 @@ interface Props {
 export function ToDoItem({ todo, setToDos }: Props) {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   let isCompleted = todo.isCompleted;
-  const { text, setText, onChange } = useInput();
+  const { value, setValue, onChange } = useInput<string>('');
 
   const handleDeleteToDo = async (id: number) => {
     await deleteToDo(id);
@@ -19,7 +19,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
 
   const handleUpdateToDo = async (id: number) => {
     const newToDoItem = {
-      todo: text,
+      todo: value,
       id: id,
       isCompleted: isCompleted,
     };
@@ -28,7 +28,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
   };
 
   useEffect(() => {
-    setText(todo.todo);
+    setValue(todo.todo);
   }, []);
 
   return (
@@ -46,7 +46,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
           {isEdit ? (
             <input
               data-testid="modify-input"
-              value={text}
+              value={value}
               onChange={onChange}
             />
           ) : (

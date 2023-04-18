@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validation } from '../../utils/vaildation';
 import { signup, signin, ErrorResponse } from '../../apis/auth';
 import { PATH } from '../../constants';
 import { setAccessToken } from '../../utils';
+import useInput from '../../hooks/useInput';
 
 type FormType = 'signup' | 'signin';
 
 export default function Form({ formType }: { formType: FormType }) {
-  const [values, setValues] = useState({
+  const { value, onChange } = useInput({
     email: '',
     password: '',
   });
@@ -20,19 +21,11 @@ export default function Form({ formType }: { formType: FormType }) {
   const navigate = useNavigate();
 
   const disabled =
-    validation.email(values.email) && validation.password(values.password);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    validation.email(value.email) && validation.password(value.password);
 
   const handleSignUp = async () => {
     try {
-      const { status } = await signup(values);
+      const { status } = await signup(value);
       if (status === 201) {
         alert(`${signUpOrLogIn}이 완료되었습니다.`);
         navigate(nextPath);
@@ -45,7 +38,7 @@ export default function Form({ formType }: { formType: FormType }) {
 
   const handleSignIn = async () => {
     try {
-      const { status, data } = await signin(values);
+      const { status, data } = await signin(value);
       if (status === 200) {
         setAccessToken(data.access_token); //로그인에 성공하면 로컬스토리지에 저장
         alert(`${signUpOrLogIn}이 완료되었습니다.`);
@@ -70,7 +63,7 @@ export default function Form({ formType }: { formType: FormType }) {
       <input
         data-testid="email-input"
         placeholder="이메일"
-        value={values.email}
+        value={value.email}
         onChange={onChange}
         name="email"
         className="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent border-gray-300"
@@ -78,7 +71,7 @@ export default function Form({ formType }: { formType: FormType }) {
       <input
         data-testid="password-input"
         placeholder="비밀번호"
-        value={values.password}
+        value={value.password}
         onChange={onChange}
         name="password"
         className="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent border-gray-300"
