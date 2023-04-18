@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { getToDos } from '../apis/todos';
 import { ToDo } from '../types';
 import { ToDoInput, ToDoItem } from '../components/ToDo';
-import { getAccessToken, deleteAccessToken } from '../utils';
-import { path } from '../constants';
+import { getAccessToken } from '../utils';
+import { PATH } from '../constants';
+import { Header } from '../components/Header';
 
 function ToDosPage() {
   const [todos, setToDos] = useState<ToDo[]>([]);
@@ -17,22 +18,14 @@ function ToDosPage() {
   useEffect(() => {
     const accessToken = getAccessToken();
     if (!accessToken) {
-      navigate(path.SIGNIN);
+      navigate(PATH.SIGNIN);
     }
     getToDoList();
   }, []);
 
   return (
     <>
-      <h3>투두 리스트</h3>
-      <button
-        onClick={() => {
-          deleteAccessToken();
-          navigate(path.SIGNIN);
-        }}
-      >
-        로그아웃
-      </button>
+      <Header path="todo" />
       <ToDoInput setToDos={setToDos} />
       <ul>
         {todos.map((todo) => (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validation } from '../../utils/vaildation';
 import { signup, signin, ErrorResponse } from '../../apis/auth';
-import { path } from '../../constants';
+import { PATH } from '../../constants';
 import { setAccessToken } from '../../utils';
 
 type FormType = 'signup' | 'signin';
@@ -15,7 +15,7 @@ export default function Form({ formType }: { formType: FormType }) {
 
   const isSignUp = formType === 'signup';
   const signUpOrLogIn = isSignUp ? '회원가입' : '로그인';
-  const nextPath = isSignUp ? path.SIGNIN : path.TODO;
+  const nextPath = isSignUp ? PATH.SIGNIN : PATH.TODO;
 
   const navigate = useNavigate();
 
