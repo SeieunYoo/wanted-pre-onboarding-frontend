@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToDo } from '../../types';
 import useInput from '../../hooks/useInput';
 import { deleteToDo, updateToDo } from '../../apis/todos';
+import { Input } from '../Input';
 
 interface Props {
   todo: ToDo;
@@ -44,7 +45,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
             }}
           />
           {isEdit ? (
-            <input
+            <Input
               data-testid="modify-input"
               value={value}
               onChange={onChange}
@@ -56,20 +57,20 @@ export function ToDoItem({ todo, setToDos }: Props) {
             <>
               <button
                 data-testid="submit-button"
-                className="text-red-500"
                 onClick={() => {
                   handleUpdateToDo(todo.id);
                   setIsEdit(false);
                 }}
+                className="border-2 border-green-500 text-green-500"
               >
                 제출
               </button>
               <button
                 data-testid="cancel-button"
-                className="text-blue-500"
                 onClick={() => {
                   setIsEdit(false);
                 }}
+                className="border-2 border-black text-black"
               >
                 취소
               </button>
@@ -78,7 +79,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
             <>
               <button
                 data-testid="modify-button"
-                className="text-red-500"
+                className="border-2 border-red-500 text-red-500"
                 onClick={() => {
                   setIsEdit(true);
                 }}
@@ -87,7 +88,7 @@ export function ToDoItem({ todo, setToDos }: Props) {
               </button>
               <button
                 data-testid="delete-button"
-                className="text-blue-500"
+                className="border-2 border-blue-500 text-blue-500"
                 onClick={() => {
                   handleDeleteToDo(todo.id);
                 }}

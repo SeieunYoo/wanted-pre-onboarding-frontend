@@ -5,10 +5,11 @@ import { signup, signin, ErrorResponse } from '../../apis/auth';
 import { PATH } from '../../constants';
 import { setAccessToken } from '../../utils';
 import useInput from '../../hooks/useInput';
+import { Input } from '../Input';
 
 type FormType = 'signup' | 'signin';
 
-export default function Form({ formType }: { formType: FormType }) {
+export function AuthForm({ formType }: { formType: FormType }) {
   const { value, onChange } = useInput({
     email: '',
     password: '',
@@ -60,21 +61,19 @@ export default function Form({ formType }: { formType: FormType }) {
       className="flex flex-col items-center justify-center w-fit rounded-lg shadow-md gap-10"
       onSubmit={handleSubmit}
     >
-      <input
+      <Input
         data-testid="email-input"
         placeholder="이메일"
         value={value.email}
         onChange={onChange}
         name="email"
-        className="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent border-gray-300"
       />
-      <input
+      <Input
         data-testid="password-input"
         placeholder="비밀번호"
         value={value.password}
         onChange={onChange}
         name="password"
-        className="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent border-gray-300"
       />
       <button
         data-testid={`${formType}-button`}

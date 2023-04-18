@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import Form from '../components/Form';
 import { PATH } from '../constants';
 import { getAccessToken } from '../utils';
 import { Header } from '../components/Header';
+import { AuthForm } from '../components/Form';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function SignUpPage() {
   return (
     <>
       <Header path="signup" />
-      <Form formType="signup" />
+      <AuthForm formType="signup" />
       <Link to={PATH.SIGNIN}>
         <span>로그인 하러가기</span>
       </Link>
