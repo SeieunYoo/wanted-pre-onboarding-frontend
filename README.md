@@ -1,11 +1,18 @@
 # Wanted pre onboarding frontend
 
 ### 스택
-- typescript, axios, react-router, tailwind, eslint , prettier
+- react, typescript, axios, react-router, tailwind, eslint , prettier
 
 ### 기능
 - 회원가입,로그인,로그아웃,투두 CRUD
 
+### 프로젝트의 실행 방법
+```
+git clone https://github.com/SeieunYoo/wanted-pre-onboarding-frontend.git
+cd wanted-pre-onboarding-frontend
+npm install
+npm start
+```
 ### 배포
 [배포링크](https://wanted-pre-onboarding-frontend-git-main-seieunyoo.vercel.app/)
 
