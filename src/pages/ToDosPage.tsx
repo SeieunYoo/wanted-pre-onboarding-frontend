@@ -10,6 +10,7 @@ import { Header } from '../components/Header';
 function ToDosPage() {
   const [todos, setToDos] = useState<ToDo[]>([]);
   const navigate = useNavigate();
+  
   const getToDoList = async () => {
     const data = await getToDos();
     setToDos(data);
@@ -27,7 +28,7 @@ function ToDosPage() {
     <>
       <Header path="todo" />
       <ToDoInput setToDos={setToDos} />
-      <ul>
+      <ul className='rounded-lg shadow-md gap-10 h-[300px] p-1'>
         {todos.map((todo) => (
           <ToDoItem key={todo.id} todo={todo} setToDos={setToDos} />
         ))}

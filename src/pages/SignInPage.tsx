@@ -7,12 +7,14 @@ import { Header } from '../components/Header';
 
 function SignInPage() {
   const navigate = useNavigate();
+  
   useEffect(() => {
     const accessToken = getAccessToken();
     if (accessToken) {
       navigate(PATH.TODO);
     }
   }, []);
+  
   return (
     <>
       <Header path="signin"/>

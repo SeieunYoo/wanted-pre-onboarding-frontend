@@ -1,12 +1,12 @@
 import { axiosBasic } from '../client';
-import { CreateToDoType } from './types';
+import { CreateToDoResoponse } from './types';
 import { ToDo } from '../../types';
 
 export const getToDos = () => {
   return axiosBasic.get('/todos').then((response) => response.data);
 };
 
-export const createToDo = (todo: CreateToDoType) => {
+export const createToDo = (todo: CreateToDoResoponse) => {
   return axiosBasic.post('/todos', todo);
 };
 

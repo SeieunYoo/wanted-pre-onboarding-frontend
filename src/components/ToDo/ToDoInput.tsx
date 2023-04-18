@@ -12,13 +12,15 @@ export function ToDoInput({ setToDos }: Props) {
   const { value, setValue, onChange } = useInput('');
 
   const handleCreateToDo = async () => {
-    const { data } = await createToDo({ todo: value });
-    setToDos((todos) => [...todos, data]);
-    setValue('');
+    if (value.trim()) {
+      const { data } = await createToDo({ todo: value });
+      setToDos((todos) => [...todos, data]);
+      setValue('');
+    }
   };
 
   return (
-    <>
+    <div className='flex'>
       <Input data-testid="new-todo-input" value={value} onChange={onChange} />
       <button
         data-testid="new-todo-add-button"
@@ -26,6 +28,6 @@ export function ToDoInput({ setToDos }: Props) {
       >
         추가
       </button>
-    </>
+    </div>
   );
 }

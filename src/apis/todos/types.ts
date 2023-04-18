@@ -1,3 +1,3 @@
 import { ToDo } from '../../types';
 
-export type CreateToDoType = Pick<ToDo, 'todo'>;
+export type CreateToDoResoponse = Pick<ToDo, 'todo'>;

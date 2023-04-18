@@ -67,6 +67,7 @@ export function AuthForm({ formType }: { formType: FormType }) {
         value={value.email}
         onChange={onChange}
         name="email"
+        type="email"
       />
       <Input
         data-testid="password-input"
@@ -74,6 +75,7 @@ export function AuthForm({ formType }: { formType: FormType }) {
         value={value.password}
         onChange={onChange}
         name="password"
+        type="password"
       />
       <button
         data-testid={`${formType}-button`}
