@@ -28,7 +28,7 @@ function ToDosPage() {
     <>
       <Header path="todo" />
       <ToDoInput setToDos={setToDos} />
-      <ul className='rounded-lg shadow-md gap-10 h-[300px] p-1'>
+      <ul className='rounded-lg shadow-md gap-10 h-[300px]'>
         {todos.map((todo) => (
           <ToDoItem key={todo.id} todo={todo} setToDos={setToDos} />
         ))}
