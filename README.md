@@ -10,11 +10,13 @@
 ```
 git clone https://github.com/SeieunYoo/wanted-pre-onboarding-frontend.git
 cd wanted-pre-onboarding-frontend
-npm install
-npm start
+npm install & npm start
 ```
 ### 배포
 [배포링크](https://wanted-pre-onboarding-frontend-git-main-seieunyoo.vercel.app/)
+
+### 데모영상 
+![IMG_0575 (5)](https://user-images.githubusercontent.com/101736358/232882542-427d62c4-9d67-4af8-a526-49bf4c4cfd60.gif)
 
 ### 디렉토리 구조
 ```
